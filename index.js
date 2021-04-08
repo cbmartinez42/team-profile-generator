@@ -27,8 +27,8 @@ function addManager() {
             message: "Enter manager's office phone number: ",
             name: 'phone'
         }
-])
-};
+]) 
+} return manager;
 
 function addMember() {
     inquirer.prompt([
@@ -60,4 +60,14 @@ function addMember() {
             name: 'github'
         }
     ])
-}
+};
+
+function createTeam() {
+    addManager();
+     
+};
+
+
+function renderHtml() {
+
+};
