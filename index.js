@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateHtml = require('./utils/generateHTML');
+const generateHtml = require('./src/page-template');
 const jest = require('jest');
 const manager = require("./lib/Manager");
 const engineer = require("./lib/Engineer");
@@ -10,16 +10,21 @@ const employees = [];
 
 
 
-function init() {
-    addManager();
-    addEmployee();
+// function init() {
+//     addManager();
+//     addEmployee();
      
-};
+// };
 
 
-function addManager() {
+async function init() {
     let manager;
-    inquirer.prompt([
+    let name;
+    let title;
+    let id;
+    let email;
+    let phone;
+    await inquirer.prompt([
         {
             type: 'input',
             message: "You must enter a manager first. Enter manager's name: ",
@@ -42,17 +47,18 @@ function addManager() {
         },
         {
             type: 'input',
-            message: "Enter manager's office phone number: ",
+            message: "Enter manager's office phone number (XXX-XXX-XXXX): ",
             name: 'phone'
         }
 ])
-        manager = {name, title: 'Manager', id, email, phone}
+        manager = {name: name, title: 'Manager', id: id, email: email, phone: phone}
+        console.log(manager)
         employees.push(manager)
         .then(employeePrompt())
 };
 
-function employeePrompt() {
-    inquirer.prompt([
+async function employeePrompt() {
+    await inquirer.prompt([
         {
             type: 'confirm',
             message: 'Would you like to add a new employee? ',
@@ -67,9 +73,9 @@ function employeePrompt() {
         }
 }
 
-function addEmployee() {
+async function addEmployee() {
     let teamMember;
-    inquirer.prompt([
+    await inquirer.prompt([
         {
             type: 'input',
             message: "Enter team member's name: ",
@@ -93,14 +99,14 @@ function addEmployee() {
             name: 'email'
         }
     ])
-    .then (function({name, title, id, email}) {
+    .then (async function({name, title, id, email}) {
         let addInfo = '';
         if (title === 'Engineer') {
             addInfo = 'Github profile';
         } else {
             addInfo = 'school name';
         }
-        inquirer.prompt([
+        await inquirer.prompt([
             {
                 type: 'input',
                 message: `Enter team member's ${addInfo}: `,
