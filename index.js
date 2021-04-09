@@ -10,7 +10,6 @@ const employees = [];
 
 
 
-
 function init() {
     addManager();
     addEmployee();
@@ -19,10 +18,11 @@ function init() {
 
 
 function addManager() {
+    let manager;
     inquirer.prompt([
         {
             type: 'input',
-            message: "Enter Manager's name: ",
+            message: "You must enter a manager first. Enter manager's name: ",
             name: 'name'
         },
         // {
@@ -46,6 +46,8 @@ function addManager() {
             name: 'phone'
         }
 ])
+        manager = {name, title: 'Manager', id, email, phone}
+        employees.push(manager)
         .then(employeePrompt())
 };
 
@@ -58,17 +60,27 @@ function employeePrompt() {
             name: 'newEmployee'
         }
     ])
-        .then(if (newEmployee === true) {
+        if (newEmployee === true) {
             addEmployee()
-        })
+        } else {
+            renderHtml()
+        }
 }
 
 function addEmployee() {
+    let teamMember;
     inquirer.prompt([
         {
             type: 'input',
             message: "Enter team member's name: ",
             name: 'name'
+        },
+        {
+            type: 'list',
+            message: "Select the team member's title: ",
+            name: 'title',
+            options: ['Engineer', 'Intern'],
+            default: 0
         },
         {
             type: 'input',
@@ -79,9 +91,30 @@ function addEmployee() {
             type: 'input',
             message: "Enter member's email: ",
             name: 'email'
+        }
+    ])
+    .then (function({name, title, id, email}) {
+        let addInfo = '';
+        if (title === 'Engineer') {
+            addInfo = 'Github profile';
+        } else {
+            addInfo = 'school name';
+        }
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: `Enter team member's ${addInfo}: `,
+                name: 'addInfo'
         }])
-        .then(function(({name, role, id, email})))
+        teamMember = {name, title, id, email, addInfo}
+        employees.push(teamMember)
+        employeePrompt();
+    })
+        
 }
 
+function renderHtml() {
+
+}
 
 init();
