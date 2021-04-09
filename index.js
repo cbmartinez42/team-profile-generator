@@ -2,11 +2,14 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHtml = require('./src/page-template');
 const jest = require('jest');
-const manager = require("./lib/Manager");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const pageTemplate = require('./src/page-template')
+const path = require('path')
+// const Employee = require("./lib/Employee");
 
-const employees = [];
+let employees = [];
 
 
 
@@ -18,16 +21,17 @@ const employees = [];
 
 
 async function init() {
-    let manager;
-    let name;
-    let title;
-    let id;
-    let email;
-    let phone;
-    await inquirer.prompt([
+    // let manager = new Manager(response.name, response.id, response.email, response.officeNum);
+    // let manager;
+    // let name;
+    // let title;
+    // let id;
+    // let email;
+    // let officeNumber;
+    const response = await inquirer.prompt([
         {
             type: 'input',
-            message: "You must enter a manager first. Enter manager's name: ",
+            message: "You MUST enter a manager first. Enter manager's name: ",
             name: 'name'
         },
         // {
@@ -48,17 +52,21 @@ async function init() {
         {
             type: 'input',
             message: "Enter manager's office phone number (XXX-XXX-XXXX): ",
-            name: 'phone'
+            name: 'officeNumber'
         }
 ])
-        manager = {name: name, title: 'Manager', id: id, email: email, phone: phone}
-        console.log(manager)
-        employees.push(manager)
-        .then(employeePrompt())
+        // function newManager(response){     
+            let manager = new Manager(response.name, response.id, response.email, response.officeNumber);   
+            // manager = `{name: ${response.name}, title: 'Manager', id: ${response.id}, email: ${response.email}, officeNumber: ${response.officeNumber}}`
+            console.log(manager);
+            employees.push(manager);
+            // }
+            console.log(employees);
+        employeePrompt();
 };
 
 async function employeePrompt() {
-    await inquirer.prompt([
+    const {newEmployee} = await inquirer.prompt([
         {
             type: 'confirm',
             message: 'Would you like to add a new employee? ',
@@ -67,15 +75,15 @@ async function employeePrompt() {
         }
     ])
         if (newEmployee === true) {
-            addEmployee()
+            addEmployee();
         } else {
-            renderHtml()
+            renderHtml();
         }
 }
 
 async function addEmployee() {
-    let teamMember;
-    await inquirer.prompt([
+    // let teamMember;
+    const response = await inquirer.prompt([
         {
             type: 'input',
             message: "Enter team member's name: ",
@@ -84,8 +92,8 @@ async function addEmployee() {
         {
             type: 'list',
             message: "Select the team member's title: ",
-            name: 'title',
-            options: ['Engineer', 'Intern'],
+            name: 'role',
+            choices: ['Engineer', 'Intern'],
             default: 0
         },
         {
@@ -99,28 +107,43 @@ async function addEmployee() {
             name: 'email'
         }
     ])
-    .then (async function({name, title, id, email}) {
+        let {name, role, id, email} = response;
         let addInfo = '';
-        if (title === 'Engineer') {
+        if (role === 'Engineer') {
             addInfo = 'Github profile';
         } else {
             addInfo = 'school name';
         }
-        await inquirer.prompt([
+        let {extraInfo} = await inquirer.prompt([
             {
                 type: 'input',
                 message: `Enter team member's ${addInfo}: `,
                 name: 'addInfo'
         }])
-        teamMember = {name, title, id, email, addInfo}
+        let teamMember;
+        if (role === 'Engineer') {
+            teamMember = new Engineer (name, id, email, extraInfo) // deleted role
+
+        } else {
+            teamMember = new Intern (name, id, email, extraInfo)
+        }
         employees.push(teamMember)
         employeePrompt();
-    })
         
 }
 
 function renderHtml() {
+    const dir = path.join(__dirname, '/dist')
+    if (!fs.existsSync(dir)){
 
+    fs.mkdir(dir, (err) => {
+        if (err) {
+            throw err;
+        }
+    })}
+    fs.writeFile(path.join(dir, '/employees.html'), pageTemplate(employees), (err) => {
+        err ? console.log(err) : console.log("(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_ Check the 'dist' directory for your shiny new README! _)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)") 
+    })
 }
 
 init();
