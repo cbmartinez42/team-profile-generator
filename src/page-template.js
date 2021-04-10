@@ -36,7 +36,6 @@ return `  <div class="card col-sm-6" style="width: 18rem;">
                             <p class="card-text">Employee ID: ${manager.getId()}</p>
                             <p class="card-text">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
                             <p class="card-text">Office Phone: ${manager.getOfficeNumber()}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
     <div class="row justify-content-md-center">`
@@ -52,7 +51,6 @@ function createEngineer(engineer) {
                 <p class="card-text">Employee ID: ${engineer.getId()}</p>
                 <p class="card-text">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
                 <p class="card-text">Github Profile: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
   `
@@ -67,7 +65,6 @@ function createIntern(intern) {
                 <p class="card-text">Employee ID: ${intern.getId()}</p>
                 <p class="card-text">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
                 <p class="card-text">School: ${intern.getSchool()}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
   `

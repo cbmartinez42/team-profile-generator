@@ -7,38 +7,17 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const pageTemplate = require('./src/page-template')
 const path = require('path')
-// const Employee = require("./lib/Employee");
+
 
 let employees = [];
 
-
-
-// function init() {
-//     addManager();
-//     addEmployee();
-     
-// };
-
-
 async function init() {
-    // let manager = new Manager(response.name, response.id, response.email, response.officeNum);
-    // let manager;
-    // let name;
-    // let title;
-    // let id;
-    // let email;
-    // let officeNumber;
     const response = await inquirer.prompt([
         {
             type: 'input',
             message: "You MUST enter a manager first. Enter manager's name: ",
             name: 'name'
         },
-        // {
-        //     type: 'list',
-        //     message: 'Select employee type (first type MUST be manager): ',
-        //     choices: ['Manager', 'Engineer', 'Intern']
-        // },
         {
             type: 'input',
             message: 'Employee ID: ',
@@ -55,13 +34,9 @@ async function init() {
             name: 'officeNumber'
         }
 ])
-        // function newManager(response){     
+    
             let manager = new Manager(response.name, response.id, response.email, response.officeNumber);   
-            // manager = `{name: ${response.name}, title: 'Manager', id: ${response.id}, email: ${response.email}, officeNumber: ${response.officeNumber}}`
-            console.log(manager);
             employees.push(manager);
-            // }
-            console.log(employees);
         employeePrompt();
 };
 
@@ -118,7 +93,7 @@ async function addEmployee() {
             {
                 type: 'input',
                 message: `Enter team member's ${addInfo}: `,
-                name: 'addInfo'
+                name: 'extraInfo'
         }])
         let teamMember;
         if (role === 'Engineer') {
@@ -142,7 +117,7 @@ function renderHtml() {
         }
     })}
     fs.writeFile(path.join(dir, '/employees.html'), pageTemplate(employees), (err) => {
-        err ? console.log(err) : console.log("(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_ Check the 'dist' directory for your shiny new README! _)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)") 
+        err ? console.log(err) : console.log("(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_ Check the 'dist' directory for your shiny new team profile! _)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)") 
     })
 }
 
