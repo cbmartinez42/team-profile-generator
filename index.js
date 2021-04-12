@@ -12,6 +12,14 @@ const path = require('path')
 let employees = [];
 
 async function init() {
+    console.log('');
+    console.log('TTTTTTT                              PPPPPP                 fff iii lll            GGGG                                       tt                  ');
+    console.log('  TTT     eee    aa aa mm mm mmmm    PP   PP rr rr   oooo  ff       lll   eee     GG  GG   eee  nn nnn    eee  rr rr    aa aa tt     oooo  rr rr  ');
+    console.log('  TTT   ee   e  aa aaa mmm  mm  mm   PPPPPP  rrr  r oo  oo ffff iii lll ee   e   GG      ee   e nnn  nn ee   e rrr  r  aa aaa tttt  oo  oo rrr  r ');
+    console.log('  TTT   eeeee  aa  aaa mmm  mm  mm   PP      rr     oo  oo ff   iii lll eeeee    GG   GG eeeee  nn   nn eeeee  rr     aa  aaa tt    oo  oo rr     ');
+    console.log('  TTT    eeeee  aaa aa mmm  mm  mm   PP      rr      oooo  ff   iii lll  eeeee    GGGGGG  eeeee nn   nn  eeeee rr      aaa aa  tttt  oooo  rr     ');
+    console.log('');
+
     const response = await inquirer.prompt([
         {
             type: 'input',
@@ -117,7 +125,8 @@ function renderHtml() {
         }
     })}
     fs.writeFile(path.join(dir, '/employees.html'), pageTemplate(employees), (err) => {
-        err ? console.log(err) : console.log("(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_ Check the 'dist' directory for your shiny new team profile! _)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)") 
+        err ? console.log(err) : console.log('');
+        console.log("(¯`·._.··¸.-~*´¨¯¨`*·~-.,-(_ Check the 'dist' directory for your shiny new team profile! _)-,.-~*´¨¯¨`*·~-.¸··._.·´¯)") 
     })
 }
 
