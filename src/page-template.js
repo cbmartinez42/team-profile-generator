@@ -14,7 +14,7 @@ function createHtml(employees) {
 </head>
 <body>
     <nav class="navbar navbar-dark bg-secondary mb-5">
-        <span class="navbar-brand mb-0 h1 w-100 text-center">My Team</span>
+        <span class="navbar-brand mb-0 h1 w-100 text-center" style="font-size: 3rem; padding: 1.5rem">My Team</span>
     </nav>
     <div class="container">
         <div class="row justify-content-md-center">
