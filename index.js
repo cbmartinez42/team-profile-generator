@@ -35,8 +35,8 @@ async function init() {
         }
 ])
     
-            let manager = new Manager(response.name, response.id, response.email, response.officeNumber);   
-            employees.push(manager);
+        let manager = new Manager(response.name, response.id, response.email, response.officeNumber);   
+        employees.push(manager);
         employeePrompt();
 };
 
