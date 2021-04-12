@@ -2,8 +2,11 @@
 
 This is an original application create a team profile through a Command Line Interface
 
-Link to sample HTML file: [Sample](./sample-employees.html)
-Screenshot of sample: <img src="./assets/images/sample.PNG">
+Link to sample HTML file: [Sample](./sample-employees.html)  
+Screenshot of sample: <img src="./assets/images/sample.PNG">    
+
+
+  
 A [video walkthrough](https://www.youtube.com/watch?v=W_ol_5Q7t8E) is also available
 
 ## Features
@@ -13,9 +16,9 @@ A [video walkthrough](https://www.youtube.com/watch?v=W_ol_5Q7t8E) is also avail
 * Utilizes class constructors to unify object data for different role types
 
 ### Challenges
-* This is my first use of Materialize CSS. In the process, I learned a lot about this new framework
-* I had challenges with aligning content in a way that was both attractive and scalable 
-    * I practiced Google-fu and reached out to other developers for input on overlays and grid layout
+* Overall I've struggled with utilizing class constructors for Object Oriented Programming. My tutor was able to help clarify the usage of these and how they interact with the overall programming framework
+* Creating tests was also a challenge. The instructions provided helped with knowing that elements to test, and I was able to get assistance from classmates in determining the proper way to test my class constructors
+
 
 ## Credits
 Many thanks to the below individuals who provided input and suggestions
@@ -41,14 +44,12 @@ If any additional issues are found, or if there are any suggestions for improvem
 2. Click the copy button <img src="./assets/images/copy-button.PNG"> to add it to your clipboard
 3. In your preferred command line (terminal, bash, etc), navigate to the folder you'd like to download the repository into
 4. Type `git clone [pasted url from clipboard]` and press enter
-5. Access the content with your code editor by either typing `code .` in your command line or by using your editor's `File > Open Folder` in your code editor menu. If only viewing in a browser, simply double click index.html to open in your default browser
 
 
 #### <ins>Zip file</ins>
 1. From Github, select the "Code" button, then select "Download ZIP"
 2. Choose which folder to download the repository into via the dialog box that appears
 3. After downloading, open the .zip file and select "Extract All" from the top of the window that appears
-4. Access the content with your code editor by selecting `File > Open Folder` in your code editor menu. If only viewing in a browser, simply double click index.html to open in your default browser
 
 
 ---
